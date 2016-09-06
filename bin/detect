@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Fail immediately on non-zero exit code.
+set -e
+# Fail immediately on non-zero exit code within a pipeline.
+set -o pipefail
+# Fail on undeclared variables.
+set -u
+# Debug, echo every command
+set -x
+
 if [ -f "mustache_templates.conf" ]; then
   echo "Mustache templates"
   exit 0
