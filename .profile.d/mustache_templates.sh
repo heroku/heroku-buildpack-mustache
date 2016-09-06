@@ -9,7 +9,9 @@ set -u
 # Debug, echo every command
 #set -x
 
-for template_args in $(cat mustache_templates.conf); do
-  echo "------> Render mustache template: ${template_args}"
-  eval ".heroku/mustache_templates/bin/mo ${template_args}"
+for template in $(cat mustache_templates.conf); do
+  echo "------> Render mustache template: ${template}"
+  local temporary_file = "${template}.mustache"
+  mv "${template}" "${temporary_file}"
+  eval ".heroku/mustache_templates/bin/mo ${temporary_file} > ${template}"
 done
