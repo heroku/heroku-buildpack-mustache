@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "mustache_templates.conf"]; then
+if [ -f "mustache_templates.conf" ]; then
   echo "Mustache templates"
   exit 0
 else
