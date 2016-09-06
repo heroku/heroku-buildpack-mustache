@@ -45,6 +45,9 @@ mustache_dir="$build_dir/.heroku/mustache_templates/bin"
 mustache_exec="$mustache_dir/mo"
 mkdir -p "$mustache_dir"
 cp "$buildpack_dir/mo/mo" "$mustache_exec"
+profile_d_dir="$build_dir/.profile.d"
+mkdir -p "$profile_d_dir"
+cp "$buildpack_dir/.profile.d/mustache_templates.sh" "$profile_d_dir/" 
 
 topic "Will render mustache templates at runtime:"
 cat "$build_dir/mustache_templates.conf" | bullet | indent
