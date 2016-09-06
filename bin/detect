@@ -9,7 +9,9 @@ set -u
 # Debug, echo every command
 set -x
 
-if [ -f "mustache_templates.conf" ]; then
+build_dir=${1:-}
+
+if [ -f "$build_dir/mustache_templates.conf" ]; then
   echo "Mustache templates"
   exit 0
 else
