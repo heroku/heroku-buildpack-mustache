@@ -47,4 +47,4 @@ mkdir -p "$mustache_dir"
 cp "$buildpack_dir/mo/mo" "$mustache_exec"
 
 topic "Will render mustache templates at runtime:"
-cat mustache_templates.conf | bullet | indent
+cat "$build_dir/mustache_templates.conf" | bullet | indent
