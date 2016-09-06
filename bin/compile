@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Fail immediately on non-zero exit code.
+set -e
+# Fail immediately on non-zero exit code within a pipeline.
+set -o pipefail
+# Fail on undeclared variables.
+set -u
+# Debug, echo every command
+#set -x
+
+function error() {
+  echo " !     $*" >&2
+  exit 1
+}
+
+function topic() {
+  echo "-----> $*"
+}
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+function bullet() {
+  c='s/^/  - /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+# parse and derive params
+build_dir=${1:-}
+cache_dir=${2:-}
+env_dir=${3:-}
+buildpack_dir=$(cd $(dirname ${0:-}); cd ..; pwd)
+
+topic "Installing mustache template engine"
+mustache_dir="$build_dir/.heroku/mustache_templates/bin"
+mustache_exec="$mustache_dir/mo"
+mkdir -p "$mustache_dir"
+cp "$buildpack_dir/mo/mo" "$mustache_exec"
+
+topic "Will render mustache templates at runtime:"
+cat mustache_templates.conf | bullet | indent

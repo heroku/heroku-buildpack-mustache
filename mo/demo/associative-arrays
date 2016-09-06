@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd "$(dirname "$0")" # Go to the script's directory
+
+declare -A DATA
+DATA=([one]=111 [two]=222)
+. ../mo
+
+cat <<EOF | mo
+Accessing data directly:
+    DATA: {{DATA}}
+    One: {{DATA.one}}
+    Two: {{DATA.two}}
+
+Things in DATA:
+{{#DATA}}
+    Item: {{.}}
+{{/DATA}}
+EOF
