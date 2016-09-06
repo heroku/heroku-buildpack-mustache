@@ -11,7 +11,7 @@ set -u
 
 for template in $(cat mustache_templates.conf); do
   echo "------> Render mustache template: ${template}"
-  local temporary_file = "${template}.mustache"
+  temporary_file = "${template}.mustache"
   mv "${template}" "${temporary_file}"
   eval ".heroku/mustache_templates/bin/mo ${temporary_file} > ${template}"
 done
