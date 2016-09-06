@@ -3,7 +3,7 @@
 # Fail immediately on non-zero exit code.
 set -e
 # Debug, echo every command
-set -x
+#set -x
 
 for template in $(cat mustache_templates.conf); do
   echo "------> Render mustache template: ${template}"

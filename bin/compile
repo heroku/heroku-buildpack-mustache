@@ -7,7 +7,7 @@ set -o pipefail
 # Fail on undeclared variables.
 set -u
 # Debug, echo every command
-set -x
+#set -x
 
 function error() {
   echo " !     $*" >&2
