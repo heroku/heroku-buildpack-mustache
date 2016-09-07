@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Render mustache templates defined in mustache_templates.conf into themselves.
+# Script name begins with "zzz" to run after other `.profile.d/` scripts.
+
 # Fail immediately on non-zero exit code.
 set -e
 # Debug, echo every command
